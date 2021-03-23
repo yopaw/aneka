@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.aneka.R;
 import com.example.aneka.fragments.HomeFragment;
 import com.example.aneka.fragments.IncomeFragment;
+import com.example.aneka.fragments.OutcomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -62,7 +63,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         SharedPreferences sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
         lblUsername.setText(sharedPreferences.getString("username",""));
-        Toast.makeText(this, ""+sharedPreferences.getString("username",""), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -81,6 +81,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_income:
                 getSupportFragmentManager().beginTransaction().
                         replace(R.id.fragment_container, new IncomeFragment()).commit();
+                break;
+            case R.id.nav_outcome:
+                getSupportFragmentManager().beginTransaction().
+                        replace(R.id.fragment_container, new OutcomeFragment()).commit();
                 break;
         }
         return true;

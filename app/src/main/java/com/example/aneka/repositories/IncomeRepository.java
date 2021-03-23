@@ -8,10 +8,7 @@ import androidx.annotation.NonNull;
 
 import com.example.aneka.adapters.IncomeAdapter;
 import com.example.aneka.model.Income;
-import com.example.aneka.model.User;
-import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
@@ -29,12 +26,12 @@ public class IncomeRepository {
 
     private static FirebaseFirestore db = FirebaseFirestore.getInstance();
     private static IncomeRepository instance = null;
-    private Vector<Income> incomes = new Vector<>();
+    private static Vector<Income> incomes = new Vector<>();
     private static IncomeAdapter incomeAdapter;
+    private static boolean doGetData = false;
 
     private IncomeRepository(){
-        loadIncomeData();
-        //listenIncomeCollection();
+        listenIncomeCollection();
     }
 
     public static IncomeAdapter getIncomeAdapter(){
@@ -44,10 +41,6 @@ public class IncomeRepository {
     public static IncomeRepository getInstance(){
         if(instance == null) instance = new IncomeRepository();
         return  instance;
-    }
-
-    public void test(){
-
     }
 
     public Vector<Income> getAllIncomes(){
@@ -65,7 +58,6 @@ public class IncomeRepository {
                                 final Income currentIncome = documentSnapshot.toObject(Income.class);
                                 if(!incomes.contains(currentIncome)) incomes.add(currentIncome);
                             }
-                            incomeAdapter = new IncomeAdapter(incomes);
                         }
                     }
                 });
@@ -78,8 +70,14 @@ public class IncomeRepository {
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                         for (DocumentChange document : queryDocumentSnapshots.getDocumentChanges()){
                             final Income currentIncome = document.getDocument().toObject(Income.class);
+                            currentIncome.setId(document.getDocument().getId());
                             if(!incomes.contains(currentIncome)) incomes.add(currentIncome);
                         }
+                        if(!doGetData){
+                            incomeAdapter = new IncomeAdapter(incomes);
+                            doGetData = true;
+                        }
+                        else incomeAdapter.notifyDataSetChanged();;
                     }
                 });
     }

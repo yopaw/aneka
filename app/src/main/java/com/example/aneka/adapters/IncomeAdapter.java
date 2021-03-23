@@ -37,7 +37,7 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Income income = incomes.get(position);
 
-        holder.tvIncomeIndex.setText(String.valueOf(position));
+        holder.tvIncomeIndex.setText(String.valueOf(position+1));
         holder.tvIncomeName.setText(income.getIncomeName());
         holder.tvIncomeValue.setText(income.getIncomeValue().toString());
     }

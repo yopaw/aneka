@@ -26,7 +26,6 @@ public class IncomeTransactionRepository {
 
     private IncomeTransactionRepository(){
         incomeTransacstions = new Vector<>();
-        loadIncomeTransactionData();
         listenIncomeTransactionCollection();
     }
 

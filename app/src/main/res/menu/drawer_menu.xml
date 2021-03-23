@@ -12,5 +12,9 @@
             android:title="Income"
             android:icon="@drawable/ic_income">
         </item>
+        <item android:id="@+id/nav_outcome"
+            android:title="Outcome"
+            android:icon="@drawable/ic_outcome">
+        </item>
     </group>
 </menu>

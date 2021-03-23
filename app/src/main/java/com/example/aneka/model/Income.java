@@ -4,12 +4,36 @@ import java.util.Date;
 
 public class Income {
 
+    private String id;
     private String incomeName;
     private Date insertedDate;
     private Integer incomeValue;
 
     public Income(){
 
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Date getInsertedDate() {
+        return insertedDate;
+    }
+
+    public void setInsertedDate(Date insertedDate) {
+        this.insertedDate = insertedDate;
+    }
+
+    public Income(String id, String incomeName, Date insertedDate, Integer incomeValue) {
+        this.id = id;
+        this.incomeName = incomeName;
+        this.insertedDate = insertedDate;
+        this.incomeValue = incomeValue;
     }
 
     public Income(String incomeName, Date insertDate, Integer incomeValue) {
@@ -24,14 +48,6 @@ public class Income {
 
     public void setIncomeName(String incomeName) {
         this.incomeName = incomeName;
-    }
-
-    public Date getInsertDate() {
-        return insertedDate;
-    }
-
-    public void setInsertDate(Date insertDate) {
-        this.insertedDate = insertDate;
     }
 
     public Integer getIncomeValue() {

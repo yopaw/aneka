@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,29 +12,26 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aneka.R;
-import com.example.aneka.adapters.IncomeAdapter;
-import com.example.aneka.model.Income;
-import com.example.aneka.repositories.IncomeRepository;
-import com.example.aneka.repositories.UserRepository;
+import com.example.aneka.repositories.OutcomeRepository;
 
-public class ViewIncomeFragment extends Fragment {
+public class ViewOutcomeFragment extends Fragment {
 
-    private RecyclerView rvIncome;
+    private RecyclerView rvOutcome;
     private RecyclerView.LayoutManager layoutManager;
-    private IncomeRepository incomeRepository;
+    private OutcomeRepository outcomeRepository;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_view_income,container,false);
+        View view = inflater.inflate(R.layout.fragment_view_outcome,container,false);
 
-        rvIncome = view.findViewById(R.id.rvIncome);
+        rvOutcome = view.findViewById(R.id.rvOutcome);
         layoutManager = new LinearLayoutManager(getContext());
-        incomeRepository = IncomeRepository.getInstance();
+        outcomeRepository = OutcomeRepository.getInstance();
 
-        rvIncome.setLayoutManager(layoutManager);
-        rvIncome.setAdapter(IncomeRepository.getIncomeAdapter());
+        rvOutcome.setLayoutManager(layoutManager);
+        rvOutcome.setAdapter(OutcomeRepository.getOutcomeAdapter());
 
-        return  view;
+        return view;
     }
 }

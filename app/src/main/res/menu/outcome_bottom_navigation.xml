@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_add_outcome"
+        android:title="Add Outcome"
+        android:icon="@drawable/ic_monthly">
+    </item>
+    <item android:id="@+id/nav_view_outcome"
+        android:title="View Outcome"
+        android:icon="@drawable/ic_monthly">
+    </item>
+    <item android:id="@+id/nav_manage_outcome"
+        android:title="Manage Outcome"
+        android:icon="@drawable/ic_monthly">
+    </item>
+</menu>
