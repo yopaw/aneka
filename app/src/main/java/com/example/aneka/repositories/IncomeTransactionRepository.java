@@ -1,16 +1,18 @@
 package com.example.aneka.repositories;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 
-import com.example.aneka.model.IncomeTransacstion;
-import com.example.aneka.model.User;
+import com.example.aneka.model.IncomeTransaction;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Calendar;
@@ -21,11 +23,11 @@ import javax.annotation.Nullable;
 
 public class IncomeTransactionRepository {
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private Vector<IncomeTransacstion> incomeTransacstions;
+    private Vector<IncomeTransaction> incomeTransactions;
     private static IncomeTransactionRepository instance;
 
     private IncomeTransactionRepository(){
-        incomeTransacstions = new Vector<>();
+        incomeTransactions = new Vector<>();
         listenIncomeTransactionCollection();
     }
 
@@ -34,30 +36,28 @@ public class IncomeTransactionRepository {
         return instance;
     }
 
-    private void loadIncomeTransactionData(){
-        db.collection("income_transactions")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        for(QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()){
-                            final IncomeTransacstion currentIncomeTransaction = queryDocumentSnapshot.toObject(IncomeTransacstion.class);
-                            if(!incomeTransacstions.contains(currentIncomeTransaction))
-                                incomeTransacstions.add(currentIncomeTransaction);
-                        }
-                    }
-                });
-    }
-
     private void listenIncomeTransactionCollection(){
         db.collection("income_transactions")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                         for (DocumentChange document : queryDocumentSnapshots.getDocumentChanges()){
-                            final IncomeTransacstion currentIncomeTransaction = document.getDocument().toObject(IncomeTransacstion.class);
-                            if(!incomeTransacstions.contains(currentIncomeTransaction))
-                                incomeTransacstions.add(currentIncomeTransaction);
+                            final IncomeTransaction currentIncomeTransaction = document.getDocument().toObject(IncomeTransaction.class);
+                            if(!incomeTransactions.contains(currentIncomeTransaction))
+                                incomeTransactions.add(currentIncomeTransaction);
+                        }
+                    }
+                });
+    }
+
+    public void insertIncomeTransactionData(final Context context, final IncomeTransaction newIncomeTransaction){
+        db.collection("income_transactions")
+                .add(newIncomeTransaction)
+                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(context, "Data Transaksi Berhasil Ditambahkan", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -68,6 +68,12 @@ public class IncomeTransactionRepository {
         final long milis = System.currentTimeMillis();
         final Date currentDate = new Date(milis);
 
+
+
+    }
+
+    public Vector<IncomeTransaction> getAllIncomeTransacstions(){
+        return incomeTransactions;
     }
 
 }
