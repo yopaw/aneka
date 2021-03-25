@@ -8,7 +8,7 @@
 
     <FrameLayout
         android:layout_marginTop="75dp"
-        android:id="@+id/income_transaction_fragment_container"
+        android:id="@+id/outcome_transaction_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/nav_bottom"
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"
-        app:menu="@menu/income_transaction_bottom_navigation">
+        app:menu="@menu/outcome_transaction_bottom_navigation">
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </RelativeLayout>

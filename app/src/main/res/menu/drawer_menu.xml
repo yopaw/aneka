@@ -16,5 +16,13 @@
             android:title="Outcome"
             android:icon="@drawable/ic_outcome">
         </item>
+        <item android:id="@+id/nav_income_transaction"
+            android:title="Income Transaction"
+            android:icon="@drawable/ic_income_transaction">
+        </item>
+        <item android:id="@+id/nav_outcome_transaction"
+            android:title="Outcome Transaction"
+            android:icon="@drawable/ic_outcome_transaction">
+        </item>
     </group>
 </menu>

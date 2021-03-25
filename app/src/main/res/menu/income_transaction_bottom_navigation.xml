@@ -8,8 +8,4 @@
         android:title="View Income Transaction"
         android:icon="@drawable/ic_monthly">
     </item>
-    <item android:id="@+id/nav_manage_outcome"
-        android:title="Manage Income Transaction"
-        android:icon="@drawable/ic_monthly">
-    </item>
 </menu>

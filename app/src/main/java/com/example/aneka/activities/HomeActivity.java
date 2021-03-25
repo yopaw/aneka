@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -18,7 +19,10 @@ import android.widget.Toast;
 import com.example.aneka.R;
 import com.example.aneka.fragments.HomeFragment;
 import com.example.aneka.fragments.IncomeFragment;
+import com.example.aneka.fragments.IncomeTransactionFragment;
 import com.example.aneka.fragments.OutcomeFragment;
+import com.example.aneka.fragments.OutcomeTransactionFragment;
+import com.example.aneka.repositories.IncomeRepository;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -28,6 +32,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private TextView lblUsername;
     private NavigationView navigationView;
     private BottomNavigationView bottomNavigationView;
+
+    private IncomeRepository incomeRepository = IncomeRepository.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,20 +79,28 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Fragment selectedFragment = null;
         switch (item.getItemId()){
             case R.id.nav_home:
-                getSupportFragmentManager().beginTransaction().
-                        replace(R.id.fragment_container, new HomeFragment()).commit();
+                selectedFragment = new HomeFragment();
                 break;
             case R.id.nav_income:
-                getSupportFragmentManager().beginTransaction().
-                        replace(R.id.fragment_container, new IncomeFragment()).commit();
+                selectedFragment = new IncomeFragment();
                 break;
             case R.id.nav_outcome:
-                getSupportFragmentManager().beginTransaction().
-                        replace(R.id.fragment_container, new OutcomeFragment()).commit();
+                selectedFragment = new OutcomeFragment();
                 break;
+            case R.id.nav_income_transaction:
+                selectedFragment = new IncomeTransactionFragment();
+                break;
+            case R.id.nav_outcome_transaction:
+                selectedFragment = new OutcomeTransactionFragment();
+                break;
+
         }
+        getSupportFragmentManager().beginTransaction().
+                replace(R.id.fragment_container, selectedFragment).commit();
         return true;
     }
+
 }

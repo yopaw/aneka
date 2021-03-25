@@ -59,4 +59,10 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.ViewHolder
             tvIncomeValue = itemView.findViewById(R.id.tvIncomeValue);
         }
     }
+
+    public void updateData(final Vector<Income> newIncomes){
+//        incomes.clear();
+//        incomes.addAll(newIncomes);
+        notifyDataSetChanged();
+    }
 }

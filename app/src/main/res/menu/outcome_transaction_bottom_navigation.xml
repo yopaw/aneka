@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_add_outcome_transaction"
+        android:title="Add Outcome Transaction"
+        android:icon="@drawable/ic_monthly">
+    </item>
+    <item android:id="@+id/nav_view_outcome_transaction"
+        android:title="View Outcome Transaction"
+        android:icon="@drawable/ic_monthly">
+    </item>
+</menu>

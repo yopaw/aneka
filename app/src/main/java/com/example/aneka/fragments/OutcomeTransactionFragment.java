@@ -13,21 +13,21 @@ import androidx.fragment.app.Fragment;
 import com.example.aneka.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class IncomeTransactionFragment extends Fragment implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class OutcomeTransactionFragment extends Fragment implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private BottomNavigationView bottomNavigationView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_income_transaction,container,false);
+        View view = inflater.inflate(R.layout.fragment_outcome_transaction,container,false);
 
         bottomNavigationView = view.findViewById(R.id.nav_bottom);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         if(savedInstanceState == null){
-            getFragmentManager().beginTransaction().replace(R.id.income_transaction_fragment_container,
-                    new AddIncomeTransactionFragment()).commit();
+            getFragmentManager().beginTransaction().replace(R.id.outcome_transaction_fragment_container,
+                    new AddOutcomeTransactionFragment()).commit();
         }
 
         return view;
@@ -39,15 +39,15 @@ public class IncomeTransactionFragment extends Fragment implements BottomNavigat
         Fragment selectedFragment = null;
 
         switch(item.getItemId()){
-            case R.id.nav_add_income_transaction:
-                selectedFragment = new AddIncomeTransactionFragment();
+            case R.id.nav_add_outcome_transaction:
+                selectedFragment = new AddOutcomeTransactionFragment();
                 break;
-            case R.id.nav_view_income_transaction:
-                selectedFragment = new ViewIncomeTransactionFragment();
+            case R.id.nav_view_outcome_transaction:
+                selectedFragment = new ViewOutcomeTransactionFragment();
                 break;
         }
 
-        getFragmentManager().beginTransaction().replace(R.id.income_transaction_fragment_container,
+        getFragmentManager().beginTransaction().replace(R.id.outcome_transaction_fragment_container,
                 selectedFragment).commit();
 
         return true;

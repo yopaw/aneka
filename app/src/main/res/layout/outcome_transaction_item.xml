@@ -16,7 +16,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tvIncomeTransactionIndex"
+            android:id="@+id/tvOutcomeTransactionIndex"
             android:padding="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,13 +26,13 @@
         </TextView>
 
         <LinearLayout
-            android:layout_toRightOf="@+id/tvIncomeTransactionIndex"
+            android:layout_toRightOf="@+id/tvOutcomeTransactionIndex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
             <TextView
-                android:id="@+id/tvIncomeTransactionDate"
+                android:id="@+id/tvOutcomeTransactionDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10-10-2021"
@@ -42,7 +42,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/tvIncomeName"
+                android:id="@+id/tvOutcomeName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Outcome: Tissue"
@@ -51,7 +51,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/tvIncomeTransactionValue"
+                android:id="@+id/tvOutcomeTransactionValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
@@ -60,7 +60,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/tvIncomeTransactionNote"
+                android:id="@+id/tvOutcomeTransactionNote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"

@@ -2,11 +2,11 @@ package com.example.aneka.model;
 
 import java.util.Date;
 
-public class IncomeTransaction {
+public class OutcomeTransaction {
 
     private String id;
-    private String incomeName;
-    private Integer incomeValue;
+    private String outcomeName;
+    private Integer outcomeValue;
     private Date transactionDate;
     private String transactionNote;
 
@@ -18,12 +18,12 @@ public class IncomeTransaction {
         this.id = id;
     }
 
-    public void setIncomeValue(Integer incomeValue) {
-        this.incomeValue = incomeValue;
+    public void setOutcomeValue(Integer outcomeValue) {
+        this.outcomeValue = outcomeValue;
     }
 
-    public Integer getIncomeValue() {
-        return incomeValue;
+    public Integer getOutcomeValue() {
+        return outcomeValue;
     }
 
     public String getTransactionNote() {
@@ -34,32 +34,32 @@ public class IncomeTransaction {
         this.transactionNote = transactionNote;
     }
 
-    public IncomeTransaction(String id, String incomeName, Integer incomeValue, Date transactionDate, String transactionNote) {
+    public OutcomeTransaction(String id, String outcomeName, Integer outcomeValue, Date transactionDate, String transactionNote) {
         this.id = id;
-        this.incomeName = incomeName;
-        this.incomeValue = incomeValue;
+        this.outcomeName = outcomeName;
+        this.outcomeValue = outcomeValue;
         this.transactionDate = transactionDate;
         this.transactionNote = transactionNote;
     }
 
-    public IncomeTransaction(String incomeName, Integer incomeValue, Date transactionDate, String transactionNote) {
+    public OutcomeTransaction(String outcomeName, Integer outcomeValue, Date transactionDate, String transactionNote) {
         this.id = id;
-        this.incomeName = incomeName;
-        this.incomeValue = incomeValue;
+        this.outcomeName = outcomeName;
+        this.outcomeValue = outcomeValue;
         this.transactionDate = transactionDate;
         this.transactionNote = transactionNote;
     }
 
-    public IncomeTransaction(){
+    public OutcomeTransaction(){
 
     }
 
-    public String getIncomeName() {
-        return incomeName;
+    public String getOutcomeName() {
+        return outcomeName;
     }
 
-    public void setIncomeName(String incomeName) {
-        this.incomeName = incomeName;
+    public void setOutcomeName(String outcomeName) {
+        this.outcomeName = outcomeName;
     }
 
     public Date getTransactionDate() {

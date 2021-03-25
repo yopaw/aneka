@@ -14,32 +14,32 @@
         >
 
         <TextView
-            android:id="@+id/tvIncomeName"
+            android:id="@+id/tvOutcomeName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Income Name"
+            android:text="Outcome Name"
             android:textSize="24dp">
 
         </TextView>
-        
+
         <Spinner
-            android:id="@+id/spIncomeName"
+            android:id="@+id/spOutcomeName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
         </Spinner>
 
         <TextView
-            android:id="@+id/tvIncomeValue"
+            android:id="@+id/tvOutcomeValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Income Value"
+            android:text="Outcome Value"
             android:textSize="24dp">
         </TextView>
 
         <EditText
-            android:id="@+id/txtIncomeValue"
+            android:id="@+id/txtOutcomeValue"
             android:inputType="number"
             android:background="@drawable/bg_edit_text"
             android:layout_width="match_parent"
@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:text="Add Transaction">
         </Button>
-        
+
     </LinearLayout>
 
 

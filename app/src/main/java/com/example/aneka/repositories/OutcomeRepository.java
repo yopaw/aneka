@@ -6,6 +6,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.example.aneka.adapters.OutcomeAdapter;
+import com.example.aneka.adapters.OutcomeAdapter;
+import com.example.aneka.model.Outcome;
 import com.example.aneka.model.Outcome;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -47,23 +49,54 @@ public class OutcomeRepository {
         return outcomes;
     }
 
-    private void listenOutcomeCollection(){
+    public static void listenOutcomeCollection(){
+        outcomes.clear();
         db.collection("outcomes")
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                        for (DocumentChange document : queryDocumentSnapshots.getDocumentChanges()){
-                            final Outcome currentOutcome = document.getDocument().toObject(Outcome.class);
-                            currentOutcome.setId(document.getDocument().getId());
-                            if(!outcomes.contains(currentOutcome)) outcomes.add(currentOutcome);
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()){
+                                final Outcome currentOutcome = queryDocumentSnapshot.toObject(Outcome.class);
+                                currentOutcome.setId(queryDocumentSnapshot.getId());
+                                if(!outcomes.contains(currentOutcome)) outcomes.add(currentOutcome);
+                            }
                         }
-                        if(!doGetData){
-                            outcomeAdapter = new OutcomeAdapter(outcomes);
-                            doGetData = true;
-                        }
-                        else outcomeAdapter.notifyDataSetChanged();
                     }
                 });
+        if(!doGetData){
+            outcomeAdapter = new OutcomeAdapter(outcomes);
+            doGetData = true;
+        }
+        else outcomeAdapter.notifyDataSetChanged();
+    }
+
+    public static void updatePriceOutcomeData(final Context context,final String outcomeId, final Integer oldPrice,final Integer additionalPrice){
+        db.collection("outcomes")
+                .document(outcomeId)
+                .update("outcomeValue",oldPrice+additionalPrice)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                    }
+                });
+        listenOutcomeCollection();
+    }
+
+    public static String getOutcomeIdByOutcomeName(final String outcomeName){
+        for(Outcome outcome : outcomes){
+            if(outcome.getOutcomeName().equals(outcomeName)) return outcome.getId();
+        }
+        return null;
+    }
+
+    public static Integer getOutcomeValueByOutcomeId(final String outcomeId){
+        for(Outcome outcome : outcomes){
+            if(outcome.getId().equals(outcomeId)) return outcome.getOutcomeValue();
+        }
+        return null;
     }
 
     public static void insertOutcomeData(final Context activity, final Outcome newOutcome){
@@ -80,5 +113,6 @@ public class OutcomeRepository {
                         }
                     }
                 });
+        listenOutcomeCollection();
     }
 }
